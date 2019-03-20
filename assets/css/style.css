@@ -1,0 +1,56 @@
+body{
+	background-image: URL("../images/deadpoolbackground.jpg");
+	background-repeat:no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+#content {
+	background-color:firebrick;
+    margin-top: 300px;
+    margin-left: 50px;
+    margin-right: 50px;
+	margin-bottom: 5px;
+	border-radius: 10px;
+}
+#header {
+    margin-bottom: 100px;
+    text-align: center;
+}
+#playButton {
+
+}
+#startButton {
+	color: firebrick;
+    background-color: #000000;
+}
+
+#questionSection{
+
+}
+#question {
+	
+}
+#timer {
+
+
+}
+
+#answerSection{
+
+}
+
+#questionResult {
+
+}
+
+#gameResult{
+
+}
+#deadpoolResutPic {
+
+}
+#playAgainButton {
+	color: firebrick;
+	background-color: #000000;
+}
+
