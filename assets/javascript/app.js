@@ -13,7 +13,7 @@ var questions = [
 		questionText: "Which actor plays the title role in the feature film Deadpool?",
 		answers: ["T.J Miller", "Ed Skrein", "Ryan Reynolds"],
 		correctAnswer: "Ryan Reynolds",
-		image: "assets\images\ryan.jpg"
+		image: "assets/images/ryan.jpg"
 	},
 	{
 		questionText: "When did the character Deadpool first appear in Marvel Comics?",
@@ -71,6 +71,13 @@ var questions = [
 	}
 
 ]
+
+$(".answerButton").on("click", function (event){
+game.check(event);
+
+console.log("answer button clicked");
+
+})
 //function for when the game starts
 var game = {
 	questionNumber: 0,
@@ -81,42 +88,128 @@ var game = {
 		game.seconds--;
 		$("#timer").html(game.seconds);
 		if (game.seconds === 0) {
-			game.check();
+			game.answerWrong();
 
 		}
 	},
 	//my check function to see if the answers match what is selected
-	check: function () {
-		for (var i = 0; i < questions[i].answers.length;
-			i++) {
+	check: function (event) {
+		if ($(event.target).text() === questions[game.questionNumber].correctAnswer) {
+			this.answerCorrect();
 
+		} else {
+			this.answerWrong();
 		}
+
+	},
+
+	answerCorrect: function() {
+		console.log("Correct!");
+		clearInterval(timer);
+		game.correct++;
+		game.questionResult("Correct!");
+		if (game.questionNumber < 9 ) {
+	
+
+		setTimeout(function(){game.nextQuestion()}, 3000);
+
+		} else {
+
+			gameResult();
+		};
+
+	},
+
+	answerWrong: function() {
+		console.log("You Wrong!");
+		clearInterval(timer);
+		game.incorrect++;
+		game.questionResult("You are wrong!");
+		if (game.questionNumber < 9 ) {
+		
+			setTimeout(function(){game.nextQuestion()}, 3000);
+
+		} else {
+
+			gameResult();
+		};
+	},
+
+	questionResult: function (result) {
+		$("#questionResult").show();
+		$("#questionSection").hide();
+		$("#answerSection").hide();
+		
+		var resultText = $("<h1>");
+		resultText.text("result: " + result);
+
+		var answerText = $("<h1>");
+		answerText.text("Correct Answer: " + questions[game.questionNumber].correctAnswer);
+		$("#resultText").html(resultText);
+		$("#questionAnswer").html(answerText);
+
+		$("#correctAnswerPic").attr("src", questions[game.questionNumber].image);
+		console.log(questions[game.questionNumber].image);
+		setTimeout(function(){ $("#questionResult").hide(); }, 3000);
+	},
+
+	nextQuestion: function () {
+		game.seconds = 30;
+		$("#timer").text(game.seconds);
+		timer = setInterval(game.countDown, 1000);
+		$("#questionSection").show();
+		$("#answerSection").show();
+		game.questionNumber++;
+		$("#answer1").html(questions[game.questionNumber].answers[0]);
+		$("#answer2").html(questions[game.questionNumber].answers[1]);
+		$("#answer3").html(questions[game.questionNumber].answers[2]);
+		$("#question").html(questions[game.questionNumber].questionText);
+
 	},
 
 	start: function () {
+		$("#startButton").hide();
+		$("#gameResult").hide();
+		$("#deadpoolResultPic").attr("src", "");;
+		$("#timer").text(game.seconds);
 		timer = setInterval(game.countDown, 1000);
 		$("#answer1").html(questions[game.questionNumber].answers[0]);
 		$("#answer2").html(questions[game.questionNumber].answers[1]);
 		$("#answer3").html(questions[game.questionNumber].answers[2]);
 		$("#question").html(questions[game.questionNumber].questionText);
+		$("#playAgainButton").hide();
 	}
 }
 //start button that doesnt start..because no start game function to achieve this..this is where i got lost..i put it in an object function but again got lost.
 $("#startButton").on("click", function () {
 	console.log("start button clicked")
 
+	game.start();
+
 });
 
 //end game result function to show stats. 
 function gameResult() {
+	clearInterval(timer);
+	$("#deadpoolResultPic").attr("src", "assets/images/deadpoolbutt.jpg");
 	$("#questionResult").hide();
 	$("#gameResult").show();
-	$("#gameStats").html("Game Over! You answered " + correctAnswers + " out of " + questionsAnswered + " correct!");
+	$("questionSection").hide();
+	$("#answerSection").hide();
+	$("#gameStats").html("Game Over! You answered " + game.correct + " out of 10 correct!");
+	$("#playAgainButton").show();
 }
 //play again button that is suppose to reset the game with the values below but couldnt figure out the start game function to actually ahieve that
 $("#playAgainButton").on("click", function () {
+	game.questionNumber = 0;
+	game.seconds = 30;
+	game.correct =0;
+	game.incorrect = 0;
+
 	questionsAnswered = 0;
 	correctAnswers = 0;
+
+	game.start()
 });
 
 });
