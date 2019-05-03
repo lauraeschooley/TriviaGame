@@ -108,15 +108,15 @@ var game = {
 		clearInterval(timer);
 		game.correct++;
 		game.questionResult("Correct!");
-		if (game.questionNumber < 9 ) {
+		// if (game.questionNumber < 9 ) {
 	
 
-		setTimeout(function(){game.nextQuestion()}, 3000);
+		// setTimeout(function(){game.nextQuestion()}, 3000);
 
-		} else {
+		// } else {
 
-			gameResult();
-		};
+		// 	gameResult();
+		// };
 
 	},
 
@@ -125,14 +125,14 @@ var game = {
 		clearInterval(timer);
 		game.incorrect++;
 		game.questionResult("You are wrong!");
-		if (game.questionNumber < 9 ) {
+		// if (game.questionNumber < 9 ) {
 		
-			setTimeout(function(){game.nextQuestion()}, 3000);
+		// 	setTimeout(function(){game.nextQuestion()}, 3000);
 
-		} else {
+		// } else {
 
-			gameResult();
-		};
+		// 	gameResult();
+		// };
 	},
 
 	questionResult: function (result) {
@@ -150,7 +150,17 @@ var game = {
 
 		$("#correctAnswerPic").attr("src", questions[game.questionNumber].image);
 		console.log(questions[game.questionNumber].image);
-		setTimeout(function(){ $("#questionResult").hide(); }, 3000);
+		setTimeout(function(){ 
+			$("#questionResult").hide();
+			if (game.questionNumber < 9 ) {
+		
+				game.nextQuestion();
+	
+			} else {
+	
+				gameResult();
+			}; 
+		}, 3000);
 	},
 
 	nextQuestion: function () {
@@ -170,6 +180,8 @@ var game = {
 	start: function () {
 		$("#startButton").hide();
 		$("#gameResult").hide();
+		$("#questionSection").show();
+		$("#answerSection").show();
 		$("#deadpoolResultPic").attr("src", "");;
 		$("#timer").text(game.seconds);
 		timer = setInterval(game.countDown, 1000);
