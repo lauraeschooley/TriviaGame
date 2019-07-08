@@ -11,7 +11,7 @@ var timer;
 var questions = [
 	{
 		questionText: "Which actor plays the title role in the feature film Deadpool?",
-		answers: ["T.J Miller", "Ed Skrein", "Ryan Reynolds"],
+		answers: ["T.J Miller", "Ed Skrein", "Ryan Reynolds", "Morena Baccarin"],
 		correctAnswer: "Ryan Reynolds",
 		image: "assets/images/ryan.jpg"
 	},
@@ -28,10 +28,10 @@ var questions = [
 		image: "assets/images/wade.jpg"
 	},
 	{
-		questionText: "In the movie Deadpool, the title character crosses the barrier between character and audience. What is the term for this imagined barrier?",
-		answers: ["the fourth wall", "the audience barrier", "the character wall", "the fourth barrier"],
-		correctAnswer: "the fourth wall",
-		image: "assets/images/deadpool_bridge.jpg"
+		questionText: "Which movie studio released the film Deadpool?",
+		answers: ["Columbia Pictures", "20th Century Fox", "Paramount Picture", "Walt Disney Productions"],
+		correctAnswer: "20th Century Fox",
+		image: "assets/images/marvel-studios-fox.jpg"
 	},
 	{
 		questionText: "Which character is the primary villain in the movie Deadpool?",
@@ -46,25 +46,25 @@ var questions = [
 		image: "assets/images/mansion.jpg"
 	},
 	{
-		questionText: "Which Deadpool character says, Okay guys, I only have 12 bullets, so you're all going to have to share?",
+		questionText: "Who says, Okay guys, I only have 12 bullets, so you're all going to have to share?",
 		answers: ["Colossus", "Ajax", "Deadpool", "David"],
 		correctAnswer: "Deadpool",
 		image: "assets/images/deadpool.jpg"
 	},
 	{
-		questionText: "What is the name of the blind Deadpool character who is Wade Wilson's roommate?",
+		questionText: "What's the name of the blind Deadpool character who is Wade Wilson's roommate?",
 		answers: ["Blind Jo", "Blind Pat", "Blind Al", "Blind Jarvis"],
 		correctAnswer: "Blind Al",
 		image: "assets/images/blindal.jpg"
 	},
 	{
-		questionText: "What is the name of the Deadpool character who recruits Wade to the Weapon X program?",
-		answers: ["Warlord", "Angel Dust", "He isnt named", "David"],
+		questionText: "What's the name of the character who recruits Wade to the Weapon X program?",
+		answers: ["Warlord", "Angel Dust", "He isnt mentioned by name", "David"],
 		correctAnswer: "He isnt named",
 		image: "assets/images/jared.jpg"
 	},
 	{
-		questionText: "What is the name of the bar where the Deadpool character Wade Wilson meets Weasel?",
+		questionText: "What's the name of the bar where the Deadpool character Wade Wilson meets Weasel?",
 		answers: ["Sister Margaret's Home for Wayward Girls", "Danger Room", "Parairie City Saloon", "mercenary missionary mansion"],
 		correctAnswer: "Sister Margaret's Home for Wayward Girls",
 		image: "assets/images/sister.jpg"
@@ -140,11 +140,11 @@ var game = {
 		$("#questionSection").hide();
 		$("#answerSection").hide();
 		
-		var resultText = $("<h1>");
-		resultText.text("result: " + result);
+		var resultText = $("<h2>");
+		resultText.text(result);
 
-		var answerText = $("<h1>");
-		answerText.text("Correct Answer: " + questions[game.questionNumber].correctAnswer);
+		var answerText = $("<h2>");
+		answerText.text(questions[game.questionNumber].correctAnswer);
 		$("#resultText").html(resultText);
 		$("#questionAnswer").html(answerText);
 
@@ -173,6 +173,7 @@ var game = {
 		$("#answer1").html(questions[game.questionNumber].answers[0]);
 		$("#answer2").html(questions[game.questionNumber].answers[1]);
 		$("#answer3").html(questions[game.questionNumber].answers[2]);
+		$("#answer4").html(questions[game.questionNumber].answers[3]);
 		$("#question").html(questions[game.questionNumber].questionText);
 
 	},
@@ -188,6 +189,7 @@ var game = {
 		$("#answer1").html(questions[game.questionNumber].answers[0]);
 		$("#answer2").html(questions[game.questionNumber].answers[1]);
 		$("#answer3").html(questions[game.questionNumber].answers[2]);
+		$("#answer4").html(questions[game.questionNumber].answers[3]);
 		$("#question").html(questions[game.questionNumber].questionText);
 		$("#playAgainButton").hide();
 	}

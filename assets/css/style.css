@@ -5,52 +5,52 @@ body{
 	background-size: cover;
 }
 #content {
-	background-color:firebrick;
-    margin-top: 300px;
-    margin-left: 50px;
-    margin-right: 50px;
-	margin-bottom: 5px;
-	border-radius: 10px;
+	background-color:transparent;
+	height: 400px;
+	width: 100%;
+	margin-top: 150px;
 }
+
+h2 {
+	color: white;
+	text-align: center;
+}
+
 #header {
     margin-bottom: 100px;
-    text-align: center;
-}
-#playButton {
-
-}
+	text-align: center;
+	color:black;
+} 
 #startButton {
 	color: firebrick;
-    background-color: #000000;
+	background-color: #000000;
+	margin-left: 725px;
 }
 
 #questionSection{
-
-}
-#question {
-	
-}
-#timer {
-
-
+text-align: center;
+color: white
 }
 
 #answerSection{
-
+text-align: center;
+color: white;
 }
 
 #questionResult {
-
+text-align: center;
 }
 
-#gameResult{
-
-}
-#deadpoolResutPic {
-
-}
 #playAgainButton {
 	color: firebrick;
 	background-color: #000000;
+	display: flex;
+	justify-content: center;
+	margin-left: 725px;
+}
+
+#deadpoolResultPic {
+	margin-top: 50px;
+	margin-left: 525px;
 }
 
